@@ -41,8 +41,8 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
             onMouseLeave={() => setHovered(false)}
             sx={{
                 position: 'relative',
-                flex: '1 1 260px',
-                maxWidth: 300,
+                flex: { xs: '1 1 100%', sm: '1 1 260px' },
+                maxWidth: { xs: '100%', sm: 300 },
                 border: '1px solid rgba(255,255,255,0.12)',
                 borderRadius: '12px',
                 overflow: 'hidden',
@@ -50,16 +50,12 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
                 backdropFilter: 'blur(6px)',
                 cursor: 'default',
                 transition: 'box-shadow 0.3s ease, transform 0.3s ease',
-                boxShadow: hovered
-                    ? '0 16px 40px rgba(0, 153, 120, 0.3), 0 4px 12px rgba(0,0,0,0.4)'
-                    : '0 0px 0px transparent',
+                boxShadow: hovered ? '0 16px 40px rgba(0,153,120,0.3), 0 4px 12px rgba(0,0,0,0.4)' : 'none',
                 transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
                 '&::before': {
                     content: '""',
                     position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
+                    top: 0, left: 0, right: 0,
                     height: '2px',
                     background: 'linear-gradient(to right, #009978, #5aa3f1)',
                     opacity: hovered ? 1 : 0,
@@ -70,21 +66,12 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
             {/* Type badge */}
             <Box sx={{ position: 'absolute', top: 14, right: 14 }}>
                 <Box sx={{ border: '1px solid #009978', borderRadius: '999px', px: 1.5, py: 0.3 }}>
-                    <Typography sx={{ fontSize: '0.65rem', color: '#009978', letterSpacing: '0.1em' }}>
-                        {type}
-                    </Typography>
+                    <Typography sx={{ fontSize: '0.65rem', color: '#009978', letterSpacing: '0.1em' }}>{type}</Typography>
                 </Box>
             </Box>
 
             {/* Icon area */}
-            <Box sx={{
-                height: 130,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'rgba(0,0,0,0.15)',
-                fontSize: '2.5rem',
-            }}>
+            <Box sx={{ height: 130, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.15)', fontSize: '2.5rem' }}>
                 {icon}
             </Box>
 
@@ -99,9 +86,7 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.8 }}>
                     {skills.map((skill) => (
                         <Box key={skill} sx={{ border: '1px solid rgba(255,255,255,0.2)', borderRadius: '999px', px: 1.2, py: 0.3 }}>
-                            <Typography sx={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)' }}>
-                                {skill}
-                            </Typography>
+                            <Typography sx={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)' }}>{skill}</Typography>
                         </Box>
                     ))}
                 </Box>
@@ -112,9 +97,8 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
 
 const Skills: React.FC = () => {
     return (
-        <Box id="skills" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', px: 4, py: 6 }}>
-            {/* Section Title */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 11, width: '100%', maxWidth: 1000 }}>
+        <Box id="skills" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', px: { xs: 2, md: 4 }, py: 6 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 6, width: '100%', maxWidth: 1000 }}>
                 <Box sx={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.2)' }} />
                 <Typography sx={{ fontFamily: 'serif', fontSize: '0.85rem', letterSpacing: '0.2em', color: 'white', textTransform: 'uppercase' }}>
                     Skills
@@ -122,8 +106,7 @@ const Skills: React.FC = () => {
                 <Box sx={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.2)' }} />
             </Box>
 
-            {/* Cards Grid */}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center', width: '100%', maxWidth: 1000, mb: 11 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center', width: '100%', maxWidth: 1000, mb: 6 }}>
                 {skillCategories.map((cat) => (
                     <SkillCard key={cat.category} {...cat} />
                 ))}

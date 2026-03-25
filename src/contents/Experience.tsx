@@ -24,9 +24,9 @@ const Experience: React.FC = () => {
     const exp = experiences[selected];
 
     return (
-        <Box id="experience" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', px: 4, py: 6 }}>
+        <Box id="experience" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', px: { xs: 2, md: 4 }, py: 6 }}>
             {/* Section Title */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 11, width: '100%', maxWidth: 1000 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 6, width: '100%', maxWidth: 1000 }}>
                 <Box sx={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.2)' }} />
                 <Typography sx={{ fontFamily: 'serif', fontSize: '0.85rem', letterSpacing: '0.2em', color: 'white', textTransform: 'uppercase' }}>
                     Experience
@@ -35,32 +35,32 @@ const Experience: React.FC = () => {
             </Box>
 
             {/* Card */}
-            <Box
-                sx={{
-                    display: 'flex',
-                    width: '100%',
-                    maxWidth: 1000,
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    background: 'rgba(255,255,255,0.03)',
-                    backdropFilter: 'blur(6px)',
-                    mb: 11,
-                }}
-            >
+            <Box sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                width: '100%',
+                maxWidth: 1000,
+                border: '1px solid rgba(255,255,255,0.15)',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                background: 'rgba(255,255,255,0.03)',
+                backdropFilter: 'blur(6px)',
+                mb: 6,
+            }}>
                 {/* Left Panel — Company List */}
-                <Box
-                    sx={{
-                        width: 200,
-                        minWidth: 200,
-                        borderRight: '1px solid rgba(255,255,255,0.1)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        p: 3,
-                    }}
-                >
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <Box sx={{
+                    width: { xs: '100%', md: 200 },
+                    minWidth: { xs: 'unset', md: 200 },
+                    borderRight: { xs: 'none', md: '1px solid rgba(255,255,255,0.1)' },
+                    borderBottom: { xs: '1px solid rgba(255,255,255,0.1)', md: 'none' },
+                    display: 'flex',
+                    flexDirection: { xs: 'row', md: 'column' },
+                    justifyContent: { xs: 'flex-start', md: 'space-between' },
+                    flexWrap: { xs: 'wrap', md: 'nowrap' },
+                    gap: { xs: 1, md: 0 },
+                    p: 3,
+                }}>
+                    <Box sx={{ display: 'flex', flexDirection: { xs: 'row', md: 'column' }, gap: 2, flexWrap: 'wrap' }}>
                         {experiences.map((e, i) => (
                             <Box
                                 key={i}
@@ -71,17 +71,15 @@ const Experience: React.FC = () => {
                                     borderBottom: selected === i ? '1px solid #009978' : '1px solid transparent',
                                 }}
                             >
-                                <Typography
-                                    sx={{
-                                        fontFamily: 'serif',
-                                        fontSize: '1rem',
-                                        fontWeight:"bold",
-                                        color: selected === i ? '#009978' : 'white',
-                                        textTransform: 'uppercase',
-                                        lineHeight: 1.3,
-                                        transition: 'color 0.2s',
-                                    }}
-                                >
+                                <Typography sx={{
+                                    fontFamily: 'serif',
+                                    fontSize: { xs: '0.85rem', md: '1rem' },
+                                    fontWeight: 'bold',
+                                    color: selected === i ? '#009978' : 'white',
+                                    textTransform: 'uppercase',
+                                    lineHeight: 1.3,
+                                    transition: 'color 0.2s',
+                                }}>
                                     {e.company}
                                 </Typography>
                                 <Typography sx={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', mt: 1.5 }}>
@@ -91,15 +89,15 @@ const Experience: React.FC = () => {
                         ))}
                     </Box>
 
-                    {/* Bottom tag */}
-                    <Typography sx={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.4)', mt: 4 }}>
+                    {/* Bottom tag — hidden on mobile row layout */}
+                    <Typography sx={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.4)', mt: { xs: 0, md: 4 }, display: { xs: 'none', md: 'block' } }}>
                         {exp.type}
                     </Typography>
                 </Box>
 
                 {/* Right Panel — Details */}
-                <Box sx={{ flex: 1, p: 4, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                    <Typography sx={{ fontFamily: 'serif', fontSize: '1.4rem', fontWeight: 700, color: 'white', mb: 0.5, textAlign: 'left' }}>
+                <Box sx={{ flex: 1, p: { xs: 3, md: 4 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <Typography sx={{ fontFamily: 'serif', fontSize: { xs: '1.1rem', md: '1.4rem' }, fontWeight: 700, color: 'white', mb: 0.5, textAlign: 'left' }}>
                         {exp.role}
                     </Typography>
                     <Typography sx={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.55)', mb: 3, textAlign: 'left' }}>
@@ -110,7 +108,7 @@ const Experience: React.FC = () => {
                         {exp.points.map((point, i) => (
                             <Box component="li" key={i} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
                                 <Typography sx={{ color: '#5aa3f1', fontSize: '1rem', lineHeight: 1.6, flexShrink: 0 }}>+</Typography>
-                                <Typography sx={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, textAlign: 'left' }}>
+                                <Typography sx={{ fontSize: { xs: '0.82rem', md: '0.9rem' }, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, textAlign: 'left' }}>
                                     {point}
                                 </Typography>
                             </Box>
