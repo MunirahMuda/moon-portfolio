@@ -1,38 +1,31 @@
 import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 
-const skillCategories = [
+const projects = [
     {
-        category: "Frontend",
-        type: "UI / UX",
-        description: "Building responsive, accessible, and visually polished user interfaces.",
-        skills: ["React.js", "TypeScript", "MUI", "HTML", "CSS"],
-        icon: "◈",
+        title: "Lunar Notes",
+        type: "WEB APP",
+        description: "A minimalist note-taking app with markdown support, tagging, and cloud sync for organised personal knowledge management.",
+        stack: ["React.js", "TypeScript", "Firebase"],
+        icon: "🌙",
     },
     {
-        category: "Design",
-        type: "TOOLING",
-        description: "Translating wireframes and prototypes into pixel-perfect implementations.",
-        skills: ["Figma", "Responsive Design", "Component Design"],
+        title: "Portfolio v1",
+        type: "WEBSITE",
+        description: "First iteration of personal portfolio built to showcase projects and skills with smooth animations and responsive layout.",
+        stack: ["HTML", "CSS", "JavaScript"],
         icon: "✦",
     },
     {
-        category: "Backend",
-        type: "SERVER",
-        description: "Building APIs and handling server-side logic for full-stack applications.",
-        skills: ["Node.js", "Express", "REST API", "Firebase"],
+        title: "Task Orbit",
+        type: "DASHBOARD",
+        description: "A personal productivity dashboard with drag-and-drop task management, priority sorting, and progress tracking.",
+        stack: ["React.js", "MUI", "LocalStorage"],
         icon: "◎",
-    },
-    {
-        category: "Dev Tools",
-        type: "WORKFLOW",
-        description: "Maintaining clean, version-controlled codebases with efficient pipelines.",
-        skills: ["Git", "GitHub", "Vite", "VS Code"],
-        icon: "🌙",
-    },
+    }
 ];
 
-const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, description, skills, icon }) => {
+const ProjectCard: React.FC<typeof projects[0]> = ({ title, type, description, stack, icon }) => {
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -48,12 +41,13 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
                 overflow: 'hidden',
                 background: 'rgba(255,255,255,0.03)',
                 backdropFilter: 'blur(6px)',
-                cursor: 'default',
+                cursor: 'pointer',
                 transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                 boxShadow: hovered
                     ? '0 16px 40px rgba(0, 153, 120, 0.3), 0 4px 12px rgba(0,0,0,0.4)'
                     : '0 0px 0px transparent',
                 transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
+                // Top overline on hover
                 '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -69,7 +63,12 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
         >
             {/* Type badge */}
             <Box sx={{ position: 'absolute', top: 14, right: 14 }}>
-                <Box sx={{ border: '1px solid #009978', borderRadius: '999px', px: 1.5, py: 0.3 }}>
+                <Box sx={{
+                    border: '1px solid #009978',
+                    borderRadius: '999px',
+                    px: 1.5,
+                    py: 0.3,
+                }}>
                     <Typography sx={{ fontSize: '0.65rem', color: '#009978', letterSpacing: '0.1em' }}>
                         {type}
                     </Typography>
@@ -90,17 +89,22 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
 
             {/* Content */}
             <Box sx={{ p: 3 }}>
-                <Typography sx={{ fontFamily: 'serif', fontSize: '1.1rem', fontWeight: 700, color: 'white', mb: 1 }}>
-                    {category}
+                <Typography sx={{ fontFamily: 'serif', fontSize: '1.1rem', fontWeight: 700, color: 'white', textTransform: 'capitalize', mb: 1 }}>
+                    {title}
                 </Typography>
                 <Typography sx={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, mb: 2, textAlign: 'left' }}>
                     {description}
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.8 }}>
-                    {skills.map((skill) => (
-                        <Box key={skill} sx={{ border: '1px solid rgba(255,255,255,0.2)', borderRadius: '999px', px: 1.2, py: 0.3 }}>
+                    {stack.map((tech) => (
+                        <Box key={tech} sx={{
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            borderRadius: '999px',
+                            px: 1.2,
+                            py: 0.3,
+                        }}>
                             <Typography sx={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)' }}>
-                                {skill}
+                                {tech}
                             </Typography>
                         </Box>
                     ))}
@@ -110,26 +114,26 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
     );
 };
 
-const Skills: React.FC = () => {
+const Projects: React.FC = () => {
     return (
-        <Box id="skills" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', px: 4, py: 6 }}>
+        <Box id="projects" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', px: 4, py: 6 }}>
             {/* Section Title */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 11, width: '100%', maxWidth: 1000 }}>
                 <Box sx={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.2)' }} />
                 <Typography sx={{ fontFamily: 'serif', fontSize: '0.85rem', letterSpacing: '0.2em', color: 'white', textTransform: 'uppercase' }}>
-                    Skills
+                    Projects
                 </Typography>
                 <Box sx={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.2)' }} />
             </Box>
 
             {/* Cards Grid */}
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center', width: '100%', maxWidth: 1000, mb: 11 }}>
-                {skillCategories.map((cat) => (
-                    <SkillCard key={cat.category} {...cat} />
+                {projects.map((project) => (
+                    <ProjectCard key={project.title} {...project} />
                 ))}
             </Box>
         </Box>
     );
 };
 
-export default Skills;
+export default Projects;

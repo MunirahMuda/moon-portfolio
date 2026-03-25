@@ -15,15 +15,19 @@ const letterSx = {
     }
 };
 
+const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+};
+
 const AppBar: React.FC = () => {
     return (
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", p: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", p: 2, position: "sticky", top: 0, zIndex: 100 }}>
             <LogoMoon />
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-evenly", gap: 7 }}>
-                <Typography sx={letterSx}>ABOUT</Typography>
-                <Typography sx={letterSx}>SKILLS</Typography>
-                <Typography sx={letterSx}>WORK</Typography>
-                <Typography sx={letterSx}>CONTACT</Typography>
+                <Typography sx={letterSx} onClick={() => scrollTo('experience')}>EXPERIENCE</Typography>
+                <Typography sx={letterSx} onClick={() => scrollTo('projects')}>PROJECTS</Typography>
+                <Typography sx={letterSx} onClick={() => scrollTo('skills')}>SKILLS</Typography>
+                <Typography sx={letterSx} onClick={() => scrollTo('contact')}>CONTACT</Typography>
             </Box>
         </Box>
     )

@@ -4,9 +4,10 @@
   --bg: linear-gradient(
     180deg,
     #000000 0%,
-    /* deep navy top */ #0d2a2a 30%,
+    /* deep navy top */ #000d1a 20%,
+    /* dark teal mid */ #0a3d2e 50%,
     /* dark teal mid */ #0a3d2e 60%,
-    /* deep green */ #000000 100% /* back to navy bottom */
+    /* deep green */ #000d1a 100%
   );
   --min-height: 100vh;
   --accent: #aa3bff;
