@@ -3,27 +3,81 @@ import { Box, Typography } from '@mui/material';
 
 const projects = [
     {
-        title: "Lunar Notes",
-        type: "WEB APP",
-        description: "A minimalist note-taking app with markdown support, tagging, and cloud sync for organised personal knowledge management.",
-        stack: ["React.js", "TypeScript", "Firebase"],
-        icon: "🌙",
-    },
-    {
         title: "Portfolio v1",
         type: "WEBSITE",
         description: "First iteration of personal portfolio built to showcase projects and skills with smooth animations and responsive layout.",
         stack: ["React.js", "MUI", "LocalStorage", "CSS"],
         icon: "✦",
+        notAvailable: false,
     },
     {
-        title: "Task Orbit",
+        title: "coming soon",
         type: "DASHBOARD",
         description: "A personal productivity dashboard with drag-and-drop task management, priority sorting, and progress tracking.",
         stack: ["React.js", "MUI", "LocalStorage"],
         icon: "◎",
+        notAvailable: true,
     }
 ];
+
+const ComingSoonCard: React.FC<typeof projects[0]> = ({ icon }) => {
+    return (
+        <Box
+            sx={{
+                position: 'relative',
+                flex: { xs: '1 1 100%', sm: '1 1 260px' },
+                maxWidth: { xs: '100%', sm: 300 },
+                border: '1px solid rgba(255,255,255,0.06)',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                background: 'rgba(255,255,255,0.01)',
+                backdropFilter: 'blur(6px)',
+                cursor: 'default',
+            }}
+        >
+            {/* Type badge
+            <Box sx={{ position: 'absolute', top: 14, right: 14 }}>
+                <Box sx={{ border: '1px solid rgba(255,255,255,0.15)', borderRadius: '999px', px: 1.5, py: 0.3 }}>
+                    <Typography sx={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.3)', letterSpacing: '0.1em' }}>{type}</Typography>
+                </Box>
+            </Box> */}
+
+            {/* Icon area with blur overlay */}
+            <Box sx={{ position: 'relative', height: 130, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', fontSize: '2.5rem', filter: 'blur(2px)', opacity: 0.3 }}>
+                {icon}
+            </Box>
+
+            {/* Coming soon overlay */}
+            <Box sx={{
+                position: 'absolute',
+                top: 0, left: 0, right: 0, bottom: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 1,
+            }}>
+                <Typography sx={{ fontSize: '0.65rem', letterSpacing: '0.3em', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase' }}>
+                    coming soon
+                </Typography>
+                <Box sx={{ width: 24, height: '1px', background: 'rgba(0,153,120,0.4)' }} />
+            </Box>
+
+            {/* Placeholder content */}
+            <Box sx={{ p: 3 }}>
+                <Box sx={{ height: 16, borderRadius: '4px', background: 'rgba(255,255,255,0.05)', mb: 1.5, width: '55%' }} />
+                <Box sx={{ height: 10, borderRadius: '4px', background: 'rgba(255,255,255,0.04)', mb: 0.8, width: '100%' }} />
+                <Box sx={{ height: 10, borderRadius: '4px', background: 'rgba(255,255,255,0.04)', mb: 0.8, width: '80%' }} />
+                <Box sx={{ height: 10, borderRadius: '4px', background: 'rgba(255,255,255,0.04)', mb: 2, width: '60%' }} />
+                <Box sx={{ display: 'flex', gap: 0.8 }}>
+                    {[40, 50, 45].map((w, i) => (
+                        <Box key={i} sx={{ height: 22, width: w, borderRadius: '999px', background: 'rgba(255,255,255,0.04)' }} />
+                    ))}
+                </Box>
+            </Box>
+        </Box>
+    );
+};
 
 const ProjectCard: React.FC<typeof projects[0]> = ({ title, type, description, stack, icon }) => {
     const [hovered, setHovered] = useState(false);
@@ -100,9 +154,11 @@ const Projects: React.FC = () => {
             </Box>
 
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center', width: '100%', maxWidth: 1000, mb: 6 }}>
-                {projects.map((project) => (
-                    <ProjectCard key={project.title} {...project} />
-                ))}
+                {projects.map((project) =>
+                    project.notAvailable
+                        ? <ComingSoonCard key={project.title} {...project} />
+                        : <ProjectCard key={project.title} {...project} />
+                )}
             </Box>
         </Box>
     );
