@@ -17,7 +17,7 @@ const contacts = [
     {
         label: "LinkedIn",
         value: "Coming soon",
-        href: null,
+        href: "www.linkedin.com/in/munirah-muda-37bab8352",
         icon: "✦",
     },
 ];

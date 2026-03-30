@@ -13,7 +13,7 @@ const projects = [
         title: "Portfolio v1",
         type: "WEBSITE",
         description: "First iteration of personal portfolio built to showcase projects and skills with smooth animations and responsive layout.",
-        stack: ["HTML", "CSS", "JavaScript"],
+        stack: ["React.js", "MUI", "LocalStorage", "CSS"],
         icon: "✦",
     },
     {
