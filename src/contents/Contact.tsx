@@ -10,7 +10,7 @@ const contacts = [
     },
     {
         label: "GitHub",
-        value: "MunirahYoung",
+        value: "MunirahMuda",
         href: "https://github.com/MunirahMuda",
         icon: "◈",
     },
@@ -39,7 +39,7 @@ const ContactChip: React.FC<typeof contacts[0]> = ({ label, value, href, icon })
                 gap: 2,
                 px: 3,
                 py: 2,
-                width: { xs: '100%', sm: 'auto' },
+                width: { sm: 'auto' },
                 border: '1px solid rgba(255,255,255,0.12)',
                 borderRadius: '12px',
                 background: 'rgba(255,255,255,0.03)',
@@ -90,7 +90,7 @@ const Contacts: React.FC = () => {
                 Feel free to reach out. I'd love to connect. Or maybe sharing a cup of cuppa
             </Typography>
 
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, flexWrap: 'wrap', gap: 2.5, justifyContent: 'center', width: '80%', maxWidth: 1000, mb: 6, alignItems: "center" }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, flexWrap: 'wrap', gap: 2.5, justifyContent: 'center', width: { xs: '100%', sm: '80%' }, maxWidth: 1000, mb: 6, alignItems: { xs: 'stretch', sm: 'center' } }}>
                 {contacts.map((c) => (
                     <ContactChip key={c.label} {...c} />
                 ))}
