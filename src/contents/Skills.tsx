@@ -6,28 +6,28 @@ const skillCategories = [
         category: "Frontend",
         type: "UI / UX",
         description: "Building responsive, accessible, and visually polished user interfaces.",
-        skills: ["React.js", "TypeScript", "JavaScript (ES6+)", "HTML & CSS", "MUI", "React Native", "Expo"],
+        skills: ["React.js", "TypeScript", "MUI", "HTML", "CSS"],
         icon: "◈",
     },
     {
-        category: "State & Design",
-        type: "ARCHITECTURE",
-        description: "Managing application state and translating wireframes into pixel-perfect components.",
-        skills: ["useState", "useEffect", "useCallback", "Context API", "Figma", "Component Architecture", "Responsive Design", "WCAG Accessibility", "Data Visualization"],
+        category: "Design",
+        type: "TOOLING",
+        description: "Translating wireframes and prototypes into pixel-perfect implementations.",
+        skills: ["Figma", "Responsive Design", "Component Design"],
         icon: "✦",
     },
     {
         category: "Backend",
         type: "SERVER",
         description: "Building APIs and handling server-side logic for full-stack applications.",
-        skills: ["Node.js", "Express.js", "RESTful APIs", "JSON", "MongoDB", "MongoDB Atlas"],
+        skills: ["Node.js", "Express", "REST API", "Firebase"],
         icon: "◎",
     },
     {
-        category: "DevOps",
-        type: "DEPLOYMENT",
-        description: "Maintaining clean codebases and shipping to production reliably.",
-        skills: ["Git", "GitHub Actions", "GitLab", "Docker", "CI/CD Pipelines", "SFTP", "SSH", "Remote Deployment"],
+        category: "Dev Tools",
+        type: "WORKFLOW",
+        description: "Maintaining clean, version-controlled codebases with efficient pipelines.",
+        skills: ["Git", "GitHub", "Vite", "VS Code"],
         icon: "🌙",
     },
 ];
@@ -63,16 +63,19 @@ const SkillCard: React.FC<typeof skillCategories[0]> = ({ category, type, descri
                 },
             }}
         >
+            {/* Type badge */}
             <Box sx={{ position: 'absolute', top: 14, right: 14 }}>
                 <Box sx={{ border: '1px solid #009978', borderRadius: '999px', px: 1.5, py: 0.3 }}>
                     <Typography sx={{ fontSize: '0.65rem', color: '#009978', letterSpacing: '0.1em' }}>{type}</Typography>
                 </Box>
             </Box>
 
+            {/* Icon area */}
             <Box sx={{ height: 130, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.15)', fontSize: '2.5rem' }}>
                 {icon}
             </Box>
 
+            {/* Content */}
             <Box sx={{ p: 3 }}>
                 <Typography sx={{ fontFamily: 'serif', fontSize: '1.1rem', fontWeight: 700, color: 'white', mb: 1 }}>
                     {category}

@@ -66,8 +66,8 @@ const About: React.FC = () => {
 
                     {/* Profile pill */}
                     <Box sx={{ border: '1px solid white', borderRadius: '120px', height: '450px', width: '230px', p: 1, display: 'flex', zIndex: 1 }}>
-                        <Box sx={{ borderRadius: '120px', overflow: 'hidden', flex: 1, height: '100%' }}>
-                            <Box component="img" src={`${import.meta.env.BASE_URL}moonPic.webp`} sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <Box sx={{ borderRadius: '120px', overflow: 'hidden', flex: 1 }}>
+                            <Box component="img" src="/moonPic.webp" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         </Box>
                     </Box>
                 </Box>
